@@ -43,7 +43,6 @@ router.post(
 
       res.json(user);
     } catch (error) {
-      // console.log(error.message);
       res.status(500).send({
         message: 'some error occured while creating user',
         error: error.message,
@@ -91,7 +90,6 @@ router.post(
       const authToken = jwt.sign(data, JWT_SECRET);
       res.json({ authToken });
     } catch (error) {
-      // console.log(error.message);
       res.status(500).json({
         message: 'some error occured while logging user',
         error: error.message,
@@ -106,7 +104,6 @@ router.get('/getUser', fetchuser, async (req, res) => {
     const user = await User.findById(req.user.id).select('-password');
     res.send(user);
   } catch (error) {
-    // console.log(error.message);
     res.status(500).json({
       message: 'some error occured while logging user',
       error: error.message,
