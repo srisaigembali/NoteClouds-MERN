@@ -17,7 +17,7 @@ router.get('/getAllNotes', fetchuser, async (req, res) => {
   }
 });
 
-// Create Note
+// Add Note
 router.post(
   '/addNote',
   fetchuser,
