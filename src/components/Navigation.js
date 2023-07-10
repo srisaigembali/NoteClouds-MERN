@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Nav, Navbar } from 'react-bootstrap';
+import { Container, Form, Nav, Navbar } from 'react-bootstrap';
 import { Link, useLocation } from 'react-router-dom';
 
 const Navigation = () => {
@@ -29,6 +29,14 @@ const Navigation = () => {
                 About
               </Nav.Link>
             </Nav>
+            <Form className="d-flex">
+              <Link className="btn btn-primary mx-1" to="/login" role="button">
+                Login
+              </Link>
+              <Link className="btn btn-primary mx-1" to="/signup" role="button">
+                SignUp
+              </Link>
+            </Form>
           </Navbar.Collapse>
         </Container>
       </Navbar>
