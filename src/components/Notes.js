@@ -4,7 +4,7 @@ import NoteItem from './NoteItem';
 import AddNote from './AddNote';
 import { Form } from 'react-bootstrap';
 
-function Notes() {
+function Notes(props) {
   const { notes, fetchAllNotes, editNote } = useContext(noteContext);
   const [note, setNote] = useState({
     id: '',
@@ -38,11 +38,12 @@ function Notes() {
     event.preventDefault();
     editNote(note.id, note.etitle, note.edescription, note.etag);
     refClose.current.click();
+    props.showAlert('Note Updated Successfully', 'success');
   };
 
   return (
     <>
-      <AddNote />
+      <AddNote showAlert={props.showAlert} />
       <button
         ref={ref}
         type="button"
@@ -140,7 +141,12 @@ function Notes() {
         </div>
         {notes.map((note) => {
           return (
-            <NoteItem key={note._id} note={note} updateNote={updateNote} />
+            <NoteItem
+              key={note._id}
+              note={note}
+              updateNote={updateNote}
+              showAlert={props.showAlert}
+            />
           );
         })}
       </div>

@@ -1,10 +1,21 @@
 import React from 'react';
-import { Alert } from 'react-bootstrap';
 
 const Alertc = (props) => {
+  const capitalize = (word) => {
+    if (word === 'danger') word = 'error';
+    return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+  };
+
   return (
-    <div>
-      <Alert variant="primary">{props.message}</Alert>
+    <div style={{ height: '50px' }}>
+      {props.alert && (
+        <div
+          className={`alert alert-${props.alert.type} alert-dismissible fade show`}
+          role="alert"
+        >
+          <strong>{capitalize(props.alert.type)}</strong>: {props.alert.msg}
+        </div>
+      )}
     </div>
   );
 };
