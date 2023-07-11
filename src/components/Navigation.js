@@ -1,8 +1,9 @@
 import React from 'react';
 import { Button, Container, Form, Nav, Navbar } from 'react-bootstrap';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import UserProfile from './UserProfile';
 
-const Navigation = () => {
+const Navigation = (props) => {
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -13,7 +14,7 @@ const Navigation = () => {
 
   return (
     <>
-      <Navbar expand="lg" bg="dark" data-bs-theme="dark">
+      <Navbar expand="lg" bg="light" data-bs-theme="light">
         <Container>
           <Navbar.Brand as={Link} to="/">
             NoteClouds
@@ -54,16 +55,21 @@ const Navigation = () => {
                 </Link>
               </Form>
             ) : (
-              <Form>
-                <Button
-                  className="mx-2"
-                  variant="primary"
-                  role="button"
-                  onClick={handleLogout}
-                >
-                  Logout
-                </Button>
-              </Form>
+              <>
+                <span title="User Profile" className="mx-3">
+                  <UserProfile />
+                </span>
+                <Form>
+                  <Button
+                    className="mx-2"
+                    variant="primary"
+                    role="button"
+                    onClick={handleLogout}
+                  >
+                    Logout
+                  </Button>
+                </Form>
+              </>
             )}
           </Navbar.Collapse>
         </Container>
