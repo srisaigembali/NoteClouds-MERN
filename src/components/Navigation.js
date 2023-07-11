@@ -1,9 +1,16 @@
 import React from 'react';
-import { Container, Form, Nav, Navbar } from 'react-bootstrap';
-import { Link, useLocation } from 'react-router-dom';
+import { Button, Container, Form, Nav, Navbar } from 'react-bootstrap';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 const Navigation = () => {
   const location = useLocation();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem('authtoken');
+    navigate('/login');
+  };
+
   return (
     <>
       <Navbar expand="lg" bg="dark" data-bs-theme="dark">
@@ -29,14 +36,35 @@ const Navigation = () => {
                 About
               </Nav.Link>
             </Nav>
-            <Form className="d-flex">
-              <Link className="btn btn-primary mx-1" to="/login" role="button">
-                Login
-              </Link>
-              <Link className="btn btn-primary mx-1" to="/signup" role="button">
-                SignUp
-              </Link>
-            </Form>
+            {!localStorage.getItem('authtoken') ? (
+              <Form className="d-flex">
+                <Link
+                  className="btn btn-primary mx-1"
+                  to="/login"
+                  role="button"
+                >
+                  Login
+                </Link>
+                <Link
+                  className="btn btn-primary mx-1"
+                  to="/signup"
+                  role="button"
+                >
+                  SignUp
+                </Link>
+              </Form>
+            ) : (
+              <Form>
+                <Button
+                  className="mx-2"
+                  variant="primary"
+                  role="button"
+                  onClick={handleLogout}
+                >
+                  Logout
+                </Button>
+              </Form>
+            )}
           </Navbar.Collapse>
         </Container>
       </Navbar>

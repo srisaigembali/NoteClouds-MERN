@@ -40,6 +40,7 @@ const Signup = (props) => {
 
   return (
     <div className="container col-md-4">
+      <h1>Create an account</h1>
       <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3" controlId="name">
           <Form.Label>Name</Form.Label>

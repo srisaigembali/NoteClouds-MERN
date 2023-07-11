@@ -34,6 +34,7 @@ const Login = (props) => {
 
   return (
     <div className="container col-md-4">
+      <h1>Login to continue</h1>
       <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3" controlId="email">
           <Form.Label>Email address</Form.Label>

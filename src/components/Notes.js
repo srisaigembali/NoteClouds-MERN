@@ -3,6 +3,7 @@ import noteContext from '../context/notes/noteContext';
 import NoteItem from './NoteItem';
 import AddNote from './AddNote';
 import { Form } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 
 function Notes(props) {
   const { notes, fetchAllNotes, editNote } = useContext(noteContext);
@@ -14,9 +15,14 @@ function Notes(props) {
   });
   const ref = useRef(null);
   const refClose = useRef(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    fetchAllNotes();
+    if (localStorage.getItem('authtoken')) {
+      fetchAllNotes();
+    } else {
+      navigate('/login');
+    }
     //eslint-disable-next-line
   }, []);
 
