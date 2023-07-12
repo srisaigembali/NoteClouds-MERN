@@ -90,7 +90,7 @@ function Notes(props) {
                     value={note.etitle}
                     onChange={handleChange}
                     required
-                    minLength={5}
+                    minLength={3}
                   />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="description">
@@ -131,7 +131,7 @@ function Notes(props) {
                 className="btn btn-primary"
                 onClick={handleUpdate}
                 disabled={
-                  note.etitle.length < 5 || note.edescription.length < 5
+                  note.etitle.length < 3 || note.edescription.length < 5
                 }
               >
                 Update Note

@@ -67,7 +67,7 @@ const AddNote = (props) => {
           variant="primary"
           type="submit"
           onClick={handleSubmit}
-          disabled={note.title.length < 5 || note.description.length < 5}
+          disabled={note.title.length < 3 || note.description.length < 5}
         >
           Submit
         </Button>

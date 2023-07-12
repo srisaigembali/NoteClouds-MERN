@@ -29,6 +29,7 @@ function App() {
         <Alert alert={alert} />
         <Routes>
           <Route exact path="/" element={<Home showAlert={showAlert} />} />
+          <Route exact path="/home" element={<Home showAlert={showAlert} />} />
           <Route exact path="/about" element={<About />} />
           <Route
             exact

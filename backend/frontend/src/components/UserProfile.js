@@ -10,7 +10,7 @@ const UserProfile = () => {
   const handleShow = () => setShow(true);
 
   const setUser = async () => {
-    const response = await fetch(`http://localhost:8000/api/auth/getUser`, {
+    const response = await fetch(`/api/auth/getUser`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',

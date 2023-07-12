@@ -2,18 +2,24 @@ import React, { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 
-const Login = (props) => {
-  const [credentials, setCredentials] = useState({ email: '', password: '' });
+const Signup = (props) => {
+  const [credentials, setCredentials] = useState({
+    name: '',
+    email: '',
+    password: '',
+    cpassword: '',
+  });
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const response = await fetch(`http://localhost:8000/api/auth/login`, {
+    const response = await fetch(`/api/auth/createUser`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
+        name: credentials.name,
         email: credentials.email,
         password: credentials.password,
       }),
@@ -22,7 +28,7 @@ const Login = (props) => {
     if (json.success) {
       navigate('/');
       localStorage.setItem('authtoken', json.authToken);
-      props.showAlert('Login Successful', 'success');
+      props.showAlert('Signup Successful', 'success');
     } else {
       props.showAlert('Invalid Credentials', 'danger');
     }
@@ -34,8 +40,19 @@ const Login = (props) => {
 
   return (
     <div className="container col-md-4">
-      <h1>Login to continue</h1>
+      <h1>Create an account</h1>
       <Form onSubmit={handleSubmit}>
+        <Form.Group className="mb-3" controlId="name">
+          <Form.Label>Name</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Enter name"
+            name="name"
+            value={credentials.name}
+            onChange={handleChange}
+            required
+          />
+        </Form.Group>
         <Form.Group className="mb-3" controlId="email">
           <Form.Label>Email address</Form.Label>
           <Form.Control
@@ -59,6 +76,18 @@ const Login = (props) => {
             minLength={5}
           />
         </Form.Group>
+        <Form.Group className="mb-3" controlId="cpassword">
+          <Form.Label>Confirm Password</Form.Label>
+          <Form.Control
+            type="password"
+            placeholder="Enter Password Again"
+            name="cpassword"
+            value={credentials.cpassword}
+            onChange={handleChange}
+            required
+            minLength={5}
+          />
+        </Form.Group>
         <Button variant="primary" type="submit">
           Submit
         </Button>
@@ -67,4 +96,4 @@ const Login = (props) => {
   );
 };
 
-export default Login;
+export default Signup;
